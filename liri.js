@@ -28,6 +28,22 @@ function liri(command, input) {
                 function(response) {
                     console.log("response");
                     console.log(response);
+                    var fs = require("fs");
+                    var text = "";
+                    fs.appendFile("log.txt", text, function(err) {
+
+                        // If an error was experienced we will log it.
+                        if (err) {
+                            console.log(err);
+                        }
+
+                        // If no error is experienced, we'll log the phrase "Content Added" to our node console.
+                        else {
+                            console.log("Content Added to loge.txt!");
+                        }
+
+                    });
+
                 })
             .catch(function(error) {
                 if (error.response) {
@@ -58,6 +74,21 @@ function liri(command, input) {
 
             console.log(JSON.stringify(data, null, 2));
             // console.log(data.album);
+            var fs = require("fs");
+            var text = "";
+            fs.appendFile("log.txt", text, function(err) {
+
+                // If an error was experienced we will log it.
+                if (err) {
+                    console.log(err);
+                }
+
+                // If no error is experienced, we'll log the phrase "Content Added" to our node console.
+                else {
+                    console.log("Content Added to loge.txt!");
+                }
+
+            });
 
         });
     } else if (command === "movie-this") {
@@ -78,6 +109,21 @@ function liri(command, input) {
                     console.log("Language of the movie: " + response.data.Language);
                     console.log("Plot of the movie: " + response.data.Plot);
                     console.log("Actors in the movie: " + response.data.Actors);
+                    var fs = require("fs");
+                    var text = "Title of the movie: " + response.data.Title + "\n" + "Year the movie came out: " + response.data.Year + "\n" + "IMDB Rating of the movie: " + response.data.Rated + "\n" + "Rotten Tomatoes Rating of the movie: " + response.data.Ratings[2].Value + "\n" + "Country where the movie was produced: " + response.data.Country + "\n" + "Language of the movie: " + response.data.Language + "\n" + "Plot of the movie: " + response.data.Plot + "\n" + "Actors in the movie: " + response.data.Actors;
+                    fs.appendFile("log.txt", text, function(err) {
+
+                        // If an error was experienced we will log it.
+                        if (err) {
+                            console.log(err);
+                        }
+
+                        // If no error is experienced, we'll log the phrase "Content Added" to our node console.
+                        else {
+                            console.log("Content Added to loge.txt!");
+                        }
+
+                    });
                 })
             .catch(function(error) {
                 if (error.response) {
