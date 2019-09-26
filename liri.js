@@ -1,7 +1,7 @@
+var Spotify = require('node-spotify-api');
 require("dotenv").config();
 
 var keys = require("./keys.js");
-var Spotify = require('node-spotify-api');
 var spotify = new Spotify(keys.spotify);
 
 
@@ -24,12 +24,20 @@ function liri(command, input) {
         var axios = require("axios");
 
         // If the request with axios is successful
-        axios.get(artistUrl).then(
-                function(response) {
-                    console.log("response");
-                    console.log(response);
-                    var fs = require("fs");
-                    var text = "";
+        axios.get(artistUrl).then(function(response) {
+
+                var fs = require("fs");
+                var moment = require("moment");
+                for (let j = 0; j < response.data.length; j++) {
+                    console.log(JSON.stringify(response.data[j].venue.name, null, 2));
+                    console.log(JSON.stringify(response.data[j].venue.country, null, 2));
+                    console.log(JSON.stringify(response.data[j].venue.region, null, 2));
+                    console.log(JSON.stringify(response.data[j].venue.city, null, 2));
+                    console.log(JSON.stringify(moment().format(response.data[j].venue.datetime), null, 2));
+
+
+
+                    var text = "Name of the venue: " + JSON.stringify(response.data[j].venue.name, null, 2) + "\nVenue location:\n Country: " + JSON.stringify(response.data[j].venue.country, null, 2) + "\nRegion: " + JSON.stringify(response.data[j].venue.country, null, 2) + "\nCity: " + JSON.stringify(response.data[j].venue.city, null, 2) + "\nDate of the Event: " + JSON.stringify(moment().format(response.data[j].venue.datetime), null, 2) + "\n========================================================\n";
                     fs.appendFile("log.txt", text, function(err) {
 
                         // If an error was experienced we will log it.
@@ -43,8 +51,8 @@ function liri(command, input) {
                         }
 
                     });
-
-                })
+                }
+            })
             .catch(function(error) {
                 if (error.response) {
                     // The request was made and the server responded with a status code
@@ -67,28 +75,41 @@ function liri(command, input) {
             });
     } else if (command === "spotify-this-song") {
 
+        var count = 0;
         spotify.search({ type: 'track', query: input }, function(err, data) {
             if (err) {
                 return console.log('Error occurred: ' + err);
             }
+            //   * If no song is provided then your program will default to "The Sign" by Ace of Base.
+            // console.log(JSON.stringify(data, null, 2));
+            for (let i = 0; i < data.tracks.items.length; i++) {
 
-            console.log(JSON.stringify(data, null, 2));
-            // console.log(data.album);
-            var fs = require("fs");
-            var text = "";
-            fs.appendFile("log.txt", text, function(err) {
+                console.log("Artist(s): " + data.tracks.items[i].album.artists[0].name);
+                console.log("The song's name: " + data.tracks.items[i].album.name);
+                console.log("A preview link of the song from Spotify: " + data.tracks.items[i].album.artists[0].external_urls.spotify);
+                console.log("The album that the song is from: " + data.tracks.items[i].album.name);
+                var fs = require("fs");
+                var text = "Artist(s): " + data.tracks.items[i].album.artists[0].name + "\n" + "The song's name: " + data.tracks.items[i].album.name + "\n" + "A preview link of the song from Spotify: " + data.tracks.items[i].album.artists[0].external_urls.spotify + "\n" + "The album that the song is from: " + data.tracks.items[i].album.name + "\n========================================================\n";
+                fs.appendFile("log.txt", text, function(err) {
 
-                // If an error was experienced we will log it.
-                if (err) {
-                    console.log(err);
-                }
+                    // If an error was experienced we will log it.
+                    if (err) {
+                        console.log(err);
+                    }
 
-                // If no error is experienced, we'll log the phrase "Content Added" to our node console.
-                else {
-                    console.log("Content Added to loge.txt!");
-                }
+                    // If no error is experienced, we'll log the phrase "Content Added" to our node console.
+                    else {
+                        console.log("Content Added to loge.txt!");
+                    }
 
-            });
+                });
+
+            }
+
+            if (data.tracks.items.length === 0) {
+                liri("spotify-this-song", "The Sign");
+            }
+
 
         });
     } else if (command === "movie-this") {
@@ -110,7 +131,7 @@ function liri(command, input) {
                     console.log("Plot of the movie: " + response.data.Plot);
                     console.log("Actors in the movie: " + response.data.Actors);
                     var fs = require("fs");
-                    var text = "Title of the movie: " + response.data.Title + "\n" + "Year the movie came out: " + response.data.Year + "\n" + "IMDB Rating of the movie: " + response.data.Rated + "\n" + "Rotten Tomatoes Rating of the movie: " + response.data.Ratings[2].Value + "\n" + "Country where the movie was produced: " + response.data.Country + "\n" + "Language of the movie: " + response.data.Language + "\n" + "Plot of the movie: " + response.data.Plot + "\n" + "Actors in the movie: " + response.data.Actors;
+                    var text = "Title of the movie: " + response.data.Title + "\n" + "Year the movie came out: " + response.data.Year + "\n" + "IMDB Rating of the movie: " + response.data.Rated + "\n" + "Rotten Tomatoes Rating of the movie: " + response.data.Ratings[2].Value + "\n" + "Country where the movie was produced: " + response.data.Country + "\n" + "Language of the movie: " + response.data.Language + "\n" + "Plot of the movie: " + response.data.Plot + "\n" + "Actors in the movie: " + response.data.Actors + "\n========================================================\n";
                     fs.appendFile("log.txt", text, function(err) {
 
                         // If an error was experienced we will log it.
