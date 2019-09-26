@@ -60,7 +60,7 @@ And after running your code the results will show in the terminal and also at "l
 
 
 ## Link
-https://amjedayoub.github.io/liri-node-app/
+https://github.com/AmjedAyoub/liri-node-app
 
 ## Technologies
 node.js
