@@ -37,24 +37,50 @@ In your terminal type
 ```terminal
 node liri.js concert-this artist's name
 ```
+
+![Image of concert-this](./images/1.png)
+
+##### The results look like below
+![Image of results of concert-this](./images/2.png)
+
 #### Step two
 "spotify-this-song"
 In your terminal type
 ```terminal
 node liri.js spotify-this-song song's name
 ```
-#### Step one
+
+![Image of spotify-this-song](./images/3.png)
+
+##### The results look like below
+![Image of results of spotify-this-song](./images/4.png)
+
+
+#### Step three
 "movie-this"
 In your terminal type
 ```terminal
 node liri.js movie-this movie's name
 ```
-#### Step one
+
+![Image of movie-this](./images/5.png)
+
+##### The results look like below
+![Image of results of movie-this](./images/6.png)
+
+
+#### Step four
 "do-what-it-says"
 In your terminal type
 ```terminal
 node liri.js do-what-it-says
 ```
+
+![Image of do-what-it-says](./images/7.png)
+
+##### The results look like below
+![Image of results of do-what-it-says](./images/8.png)
+
 
 And after running your code the results will show in the terminal and also at "log.txt" file
 
