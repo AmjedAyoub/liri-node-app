@@ -1,4 +1,4 @@
-# liri-node-app
+# LIRI-Node-App
 LIRI is like iPhone's SIRI. However, while SIRI is a Speech Interpretation and Recognition Interface, LIRI is a _Language_ Interpretation and Recognition Interface. LIRI will be a command line node app that takes in parameters and gives you back data.
 
 ## Overview
@@ -29,7 +29,22 @@ LIRI can understand four commands:
 * do-what-it-says
     This will run the "spotify-this-song" command with "I Want it That Way" as the song, and it will show 20 related songs.
 
-## Instructions
+## Getting Started
+These instructions will get you a copy of the project up and running on your local machine.
+
+### Installing
+Git clone the repository to your local machine:
+
+HTTPS:
+```
+https://github.com/AmjedAyoub/liri-node-app.git
+```
+SSH:
+```
+git@github.com:AmjedAyoub/liri-node-app.git
+```
+
+## How to use
 
 #### Step one
 "concert-this"
@@ -81,12 +96,17 @@ node liri.js do-what-it-says
 ##### The results look like below
 ![Image of results of do-what-it-says](./images/8.png)
 
-
 And after running your code the results will show in the terminal and also at "log.txt" file
 
 
-## Link
-https://github.com/AmjedAyoub/liri-node-app
+## Technologies & Tools
+* Node.js
 
-## Technologies
-node.js
+## Links
+This application is published on [GitHub](https://github.com/AmjedAyoub/liri-node-app).
+
+## Authors
+See contribution history [here](https://github.com/AmjedAyoub/ImageAggregator/graphs/contributors).
+
+## Future updates
+At the moment, this app is the minimum viable product. For future updates; more functionality and features to add.
